@@ -11,6 +11,8 @@ jobs:
     # Checks out under $GITHUB_WORKSPACE
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        path: gtk3-classic
 
     - name: Get GTK Version
       run: |
@@ -55,14 +57,26 @@ jobs:
     - name: Build
       run: |
         source PKGBUILD
-        CFLAGS+=" -DG_ENABLE_DEBUG -DG_DISABLE_CAST_CHECKS"
+        CFLAGS+=" -O3 -pipe -fno-plt -DG_DISABLE_CAST_CHECKS"
+        CXXFLAGS+=" -O3 -pipe -fno-plt"
         meson gtk+-${_gtkver} build \
-            -D broadway_backend=true \
-            -D colord=auto \
-            -D demos=true \
-            -D examples=false \
+            -D broadway_backend=false \
+            -D demos=false \
             -D tests=false \
-            -D installed_tests=false
+            -D installed_tests=false \
+            -D print_backends=file \
+            -D win32_backend=false \
+            -D quartz_backend=false \
+            -D colord=no \
+            -D cloudproviders=false \
+            -D gtk_doc=false \
+            -D examples=false \
+            -D x11_backend=false \
+            -D tracker3=false \
+            -D man=false \
+            -D xinerama=false \
+            -D profiler=false \
+            -D wayland_backend=true
         ninja -C build
 
   makepkg:
@@ -74,6 +88,8 @@ jobs:
     # Checks out under $GITHUB_WORKSPACE
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        path: gtk3-classic
 
     - name: Get GTK Version
       run: |
