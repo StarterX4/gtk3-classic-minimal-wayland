@@ -141,7 +141,7 @@ build()
                 -D x11_backend=false \
                 -D tracker3=false \
                 -D man=false \
-		-D xinerama=false \
+		-D xinerama=no \
 		-D profiler=false \
 		-D wayland_backend=true
 	ninja -C build
@@ -170,7 +170,7 @@ build()
                 -D x11_backend=false \
                 -D tracker3=false \
                 -D man=false \
-		-D xinerama=false \
+		-D xinerama=no \
 		-D profiler=false \
 		-D wayland_backend=true \
 		-D libdir=/usr/lib32
