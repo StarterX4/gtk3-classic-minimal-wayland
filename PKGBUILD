@@ -12,8 +12,8 @@ pkgbase=gtk3-classic
 pkgname=($pkgbase lib32-$pkgbase)
 pkgver=${_gtkver}
 pkgrel=1
-pkgdesc="GTK3 patched to provide a more classic experience"
-url="https://github.com/lah7/gtk3-classic"
+pkgdesc="GTK3 patched to provide a more classic experience (minimal and Wayland-only)"
+url="https://github.com/StarterX4/gtk3-classic-minimal-wayland"
 conflicts=(gtk3 gtk3-typeahead gtk3-print-backends gtk3-nocsd gtk3-nocsd-git gtk3-nocsd-legacy-git)
 provides=(gtk3=$_gtkver gtk3-typeahead=$_gtkver gtk3-mushrooms=$_gtkver gtk3-print-backends
           libgtk-3.so libgdk-3.so libgailutil-3.so)
@@ -114,16 +114,36 @@ prepare()
 
 build()
 {
-	CFLAGS+=" -DG_ENABLE_DEBUG -DG_DISABLE_CAST_CHECKS"
+	CFLAGS+=" -O3 -pipe -fno-plt -DG_DISABLE_CAST_CHECKS"
+	CXXFLAGS+=" -O3 -pipe -fno-plt"
+
+	# Remove atk - patch (aka at-spi/atk-bridge removal patch)
+	# Installed atk package (libs) still required for build.
+        # Original NETBSD patch included but not used ( file: original.NETBSD.atk-bridge.patch )
+        # Here the same patch trough sed util:
+
+	sed -i 's/atk_bridge_adaptor_init.*$//g' "gtk+-$_gtkver/gtk/a11y/gtkaccessibility.c"
+	sed -i 's/^#.*atk-bridge.h.$//g' "gtk+-$_gtkver/gtk/a11y/gtkaccessibility.c"
 
 	# 64-bit
 	arch-meson gtk+-$_gtkver build \
-		-D broadway_backend=true \
-		-D colord=auto \
-		-D demos=true \
-		-D examples=false \
-		-D tests=false \
-		-D installed_tests=false
+		-D broadway_backend=false \
+                -D demos=false \
+                -D tests=false \
+                -D installed_tests=false \
+                -D print_backends=file \
+                -D win32_backend=false \
+                -D quartz_backend=false  \
+                -D colord=no \
+                -D cloudproviders=false \
+                -D gtk_doc=false \
+                -D examples=false \
+                -D x11_backend=false \
+                -D tracker3=false \
+                -D man=false \
+		-D xinerama=false \
+		-D profiler=false \
+		-D wayland_backend=true
 	ninja -C build
 
 	# 32-bit
@@ -135,13 +155,24 @@ build()
 	LDFLAGS+=" -m32"
 
 	linux32 arch-meson gtk+-$_gtkver build32 \
-		-D broadway_backend=true \
-		-D colord=auto \
-		-D demos=false \
-		-D examples=false \
 		-D introspection=false \
-		-D tests=false \
-		-D installed_tests=false \
+		-D broadway_backend=false \
+                -D demos=false \
+                -D tests=false \
+                -D installed_tests=false \
+                -D print_backends=file \
+                -D win32_backend=false \
+                -D quartz_backend=false  \
+                -D colord=no \
+                -D cloudproviders=false \
+                -D gtk_doc=false \
+                -D examples=false \
+                -D x11_backend=false \
+                -D tracker3=false \
+                -D man=false \
+		-D xinerama=false \
+		-D profiler=false \
+		-D wayland_backend=true \
 		-D libdir=/usr/lib32
 	linux32 ninja -C build32
 }
@@ -176,7 +207,7 @@ package_lib32-gtk3-classic()
 		lib32-atk lib32-cairo lib32-libxcursor lib32-libxinerama lib32-libxrandr lib32-libxi
 		lib32-libepoxy lib32-gdk-pixbuf2 lib32-fribidi lib32-libxcomposite lib32-libxdamage
 		lib32-pango lib32-at-spi2-atk lib32-wayland lib32-libxkbcommon lib32-json-glib
-		lib32-librsvg lib32-mesa lib32-libcups lib32-krb5 lib32-e2fsprogs
+		lib32-librsvg lib32-mesa lib32-libcups lib32-krb5
 		"gtk3-classic>=$pkgver"
 	)
 	conflicts=(lib32-gtk3 lib32-libgtk3-nocsd-git)
