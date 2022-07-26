@@ -11,8 +11,8 @@ jobs:
     # Checks out under $GITHUB_WORKSPACE
     - name: Checkout
       uses: actions/checkout@v2
-      with:
-        path: gtk3-classic
+#      with:
+#        path: gtk3-classic
 
     - name: Get GTK Version
       run: |
@@ -88,8 +88,8 @@ jobs:
     # Checks out under $GITHUB_WORKSPACE
     - name: Checkout
       uses: actions/checkout@v2
-      with:
-        path: gtk3-classic
+#      with:
+#        path: gtk3-classic
 
     - name: Get GTK Version
       run: |
