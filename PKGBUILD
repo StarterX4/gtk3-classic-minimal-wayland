@@ -63,8 +63,8 @@ prepare()
 	cd gtk-$_gtkver
 	QUILT_PATCHES=.. quilt push -av
 
-	rm -f "$srcdir"/gtk-"$_gtkver"/gtk/theme/Default/Default-{hc,hc-dark,dark,light}.css
-	cat "$srcdir/smaller-adwaita.css" | tee -a "$srcdir"/gtk-"$_gtkver"/gtk/theme/Default/Default-{hc,hc-dark,dark,light}.css > /dev/null
+	#rm -f "$srcdir"/gtk-"$_gtkver"/gtk/theme/Default/Default-{hc,hc-dark,dark,light}.css
+	#cat "$srcdir/smaller-adwaita.css" | tee -a "$srcdir"/gtk-"$_gtkver"/gtk/theme/Default/Default-{hc,hc-dark,dark,light}.css > /dev/null
 }
 
 build()
