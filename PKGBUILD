@@ -47,7 +47,7 @@ source=(
 	"gtk-query-immodules-4.0.hook::https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/gtk4/trunk/gtk4-querymodules.hook"
 	gtk-update-icon-cache.{hook,script}
 )
-sha256sums=('7a60ebe4c6ef84f31334dff0a1bd48876d7dbd7d899a194436aef748e0cf5326'
+sha256sums=('SKIP'
             'caa4da5e786a38e788617d6c9a844dfc604038d2a5d57033273859cad46d14cd'
             #'5a422025358243567111806062b4be117706afe276e0c842bb238ae208a0d5d0'
             'b92a82568a0f5c1c897561efafb55deb2331450d53377ab230def71012d8ccfc'
