@@ -105,11 +105,11 @@ sha256sums=('8dc1a547b8c54cc70aed0d88a1a89c6cc5cc59bb2c755c7192bd9613a206d5b0'
 
 prepare()
 {
-	cd gtk+-$_gtkver
+	cd gtk-$_gtkver
 	QUILT_PATCHES=.. quilt push -av
 
-	rm -f "$srcdir"/gtk+-"$_gtkver"/gtk/theme/Adwaita/gtk-contained{,-dark}.css
-	cat "$srcdir/smaller-adwaita.css" | tee -a "$srcdir"/gtk+-"$_gtkver"/gtk/theme/Adwaita/gtk-contained{,-dark}.css > /dev/null
+	rm -f "$srcdir"/gtk-"$_gtkver"/gtk/theme/Adwaita/gtk-contained{,-dark}.css
+	cat "$srcdir/smaller-adwaita.css" | tee -a "$srcdir"/gtk-"$_gtkver"/gtk/theme/Adwaita/gtk-contained{,-dark}.css > /dev/null
 }
 
 build()
@@ -124,8 +124,8 @@ build()
         # Original NETBSD patch included but not used ( file: original.NETBSD.atk-bridge.patch )
         # Here the same patch trough sed util:
 
-	sed -i 's/atk_bridge_adaptor_init.*$//g' "gtk+-$_gtkver/gtk/a11y/gtkaccessibility.c"
-	sed -i 's/^#.*atk-bridge.h.$//g' "gtk+-$_gtkver/gtk/a11y/gtkaccessibility.c"
+	sed -i 's/atk_bridge_adaptor_init.*$//g' "gtk-$_gtkver/gtk/a11y/gtkaccessibility.c"
+	sed -i 's/^#.*atk-bridge.h.$//g' "gtk-$_gtkver/gtk/a11y/gtkaccessibility.c"
 
 	# 64-bit
 	arch-meson --buildtype release --strip gtk build \
