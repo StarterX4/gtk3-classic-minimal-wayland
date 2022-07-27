@@ -106,7 +106,7 @@ sha256sums=('8dc1a547b8c54cc70aed0d88a1a89c6cc5cc59bb2c755c7192bd9613a206d5b0'
 prepare()
 {
 	cd gtk+-$_gtkver
-	QUILT_PATCHES=.. quilt push -av
+	QUILT_PATCHES=.. quilt push -avfq
 
 	rm -f "$srcdir"/gtk+-"$_gtkver"/gtk/theme/Adwaita/gtk-contained{,-dark}.css
 	cat "$srcdir/smaller-adwaita.css" | tee -a "$srcdir"/gtk+-"$_gtkver"/gtk/theme/Adwaita/gtk-contained{,-dark}.css > /dev/null
