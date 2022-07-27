@@ -132,7 +132,6 @@ package_gtk4-minimal()
 	
 	cd "$pkgdir"
 	_pick guic usr/bin/gtk4-update-icon-cache
-	_pick guic usr/share/man/man1/gtk4-update-icon-cache.1
 
 }
 
@@ -143,7 +142,6 @@ package_gtk-update-icon-cache() {
 
   mv guic/* "$pkgdir"
   ln -s gtk4-update-icon-cache "$pkgdir/usr/bin/gtk-update-icon-cache"
-  ln -s gtk4-update-icon-cache.1 "$pkgdir/usr/share/man/man1/gtk-update-icon-cache.1"
 
   install -Dt "$pkgdir/usr/share/libalpm/hooks" -m644 gtk-update-icon-cache.hook
   install -D gtk-update-icon-cache.script "$pkgdir/usr/share/libalpm/scripts/gtk-update-icon-cache"
