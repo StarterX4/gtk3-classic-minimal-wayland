@@ -74,7 +74,7 @@ build()
 	CC="ccache gcc"
 	PATH="/usr/lib/ccache/bin/:$PATH"
 	alias cc="ccache gcc"
-
+	export "CACHE_DIR="/home/runner/work/gtk3-classic-minimal-wayland/gtk3-classic-minimal-wayland/.ccache"
 	# 64-bit
 	arch-meson --buildtype release --strip gtk-4.7.1 build \
 		-D broadway-backend=false \
