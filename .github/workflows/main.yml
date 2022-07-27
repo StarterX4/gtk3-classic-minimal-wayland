@@ -1,4 +1,4 @@
-name: CI
+name: gtk4
 
 on: [workflow_dispatch]
 #on: [push, pull_request]
@@ -50,7 +50,7 @@ jobs:
       uses: actions/cache@v2
       id: gtksrc
       with:
-        path: 'gtk+*.tar.xz'
+        path: 'gtk*.tar.xz'
         key: gtk-${{ env.GTK_VERSION }}
 
     - name: Generate Checksum
