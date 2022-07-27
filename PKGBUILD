@@ -117,6 +117,7 @@ build()
 	CFLAGS+=" -O3 -pipe -fno-plt -DG_DISABLE_CAST_CHECKS"
 	CXXFLAGS+=" -O3 -pipe -fno-plt"
 	CC="ccache gcc"
+	PATH="/usr/lib/ccache/bin/:$PATH"
 
 	# Remove atk - patch (aka at-spi/atk-bridge removal patch)
 	# Installed atk package (libs) still required for build.
@@ -139,7 +140,7 @@ build()
                 -D cloudproviders=false \
                 -D gtk_doc=false \
                 -D examples=false \
-                -D x11_backend=true \
+                -D x11_backend=false \
                 -D tracker3=false \
                 -D man=false \
 		-D xinerama=no \
