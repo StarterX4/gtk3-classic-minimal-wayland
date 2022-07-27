@@ -2,6 +2,22 @@ Index: b/gtk/gtkplacessidebar.c
 ===================================================================
 --- a/gtk/gtkplacessidebar.c
 +++ b/gtk/gtkplacessidebar.c
+@@ -176,6 +176,7 @@
+   guint show_other_locations   : 1;
+   guint show_trash             : 1;
+   guint show_starred_location  : 1;
++  guint local_only             : 1;
+ };
+ 
+ struct _GtkPlacesSidebarClass {
+@@ -231,6 +232,7 @@
+   PROP_SHOW_ENTER_LOCATION,
+   PROP_SHOW_TRASH,
+   PROP_SHOW_STARRED_LOCATION,
++  PROP_LOCAL_ONLY,
+   PROP_SHOW_OTHER_LOCATIONS,
+   NUM_PROPERTIES
+ };
 @@ -633,6 +633,7 @@ open_home (GtkPlacesSidebar *sidebar)
  static void
  add_special_dirs (GtkPlacesSidebar *sidebar)
@@ -27,8 +43,8 @@ Index: b/gtk/gtkplacessidebar.c
 +    {
 +      start_icon = g_themed_icon_new_with_default_fallbacks (ICON_NAME_NETWORK);
 +
-+      add_place (sidebar, PLACES_BUILT_IN,
-+                 SECTION_OTHER_LOCATIONS,
++      add_place (sidebar, GTK_PLACES_BUILT_IN,
++                 PROP_SHOW_OTHER_LOCATIONS,
 +                 _("Networks"), start_icon, NULL, "network:///",
 +                 NULL, NULL, NULL, NULL, 0, _("Show other locations"));
 +
