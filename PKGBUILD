@@ -127,7 +127,7 @@ build()
 	sed -i 's/^#.*atk-bridge.h.$//g' "gtk+-$_gtkver/gtk/a11y/gtkaccessibility.c"
 
 	# 64-bit
-	arch-meson CC="ccache gcc" gtk+-$_gtkver build \
+	arch-meson --buildtype release --strip gtk+-$_gtkver build \
 		-D broadway_backend=false \
                 -D demos=false \
                 -D tests=false \
@@ -155,7 +155,7 @@ build()
 	CXXFLAGS+=" -m32"
 	LDFLAGS+=" -m32"
 
-	linux32 CC="ccache gcc" arch-meson gtk+-$_gtkver build32 \
+	linux32 arch-meson --buildtype release --strip gtk+-$_gtkver build32 \
 		-D introspection=false \
 		-D broadway_backend=false \
                 -D demos=false \
