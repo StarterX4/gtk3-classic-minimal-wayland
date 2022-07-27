@@ -21,10 +21,10 @@ options=(ccache)
 arch=(x86_64)
 license=(LGPL)
 makedepends=(
-	git gobject-introspection sassc meson quilt
+	git gobject-introspection graphene sassc meson quilt
 
 	atk cairo libxcursor libxinerama libxrandr libxi libepoxy gdk-pixbuf2 fribidi
-	libxcomposite libxdamage pango shared-mime-info shaderc wayland libxkbcommon
+	libxcomposite libxdamage pango libcloudproviders shared-mime-info shaderc wayland libxkbcommon
 	json-glib librsvg wayland-protocols desktop-file-utils mesa
 
 )
