@@ -36,7 +36,7 @@ jobs:
       run: |
         source PKGBUILD
         echo "GTK_VERSION=${_gtkver}" >> $GITHUB_ENV
-        echo "CC=ccache gcc" >> $GITHUB_ENV
+        echo "PATH=/usr/lib/ccache/bin/:$PATH" >> $GITHUB_ENV
 
     - name: Cache Pacman Packages
       uses: actions/cache@v2
