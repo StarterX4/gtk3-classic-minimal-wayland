@@ -124,7 +124,7 @@ jobs:
       with:
          upload_url: ${{ steps.create_release.outputs.upload_url }}
          asset_path: gtk3-classic-3.24.34-100-x86_64.pkg.tar.zst
-         asset_name: gtk3-classic-run${{github.run_number}}-pkg
+         asset_name: gtk3-classic-3.24.34-100-run${{github.run_number}}.pkg.tar.zst
          asset_content_type: application/zstd
          
     - name: Upload built pkg
@@ -134,7 +134,7 @@ jobs:
       with:
          upload_url: ${{ steps.create_release.outputs.upload_url }}
          asset_path: lib32-gtk3-classic-3.24.34-100-x86_64.pkg.tar.zst
-         asset_name: lib32-gtk3-classic-run${{github.run_number}}-pkg
+         asset_name: lib32-gtk3-classic-3.24.34-100-run${{github.run_number}}.pkg.tar.zst
          asset_content_type: application/zstd
          
     - name: Publish
