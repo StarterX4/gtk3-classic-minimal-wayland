@@ -32,15 +32,12 @@ jobs:
           # If 'false', do not save the cache, only restore.
           #save: # optional, default is true
 
-    - name: CCache home dirs
-      run: |
-        mkdir -pv /home/builder/.cache/ccache/tmp
-
     - name: Get GTK Version
       run: |
         source PKGBUILD
         echo "GTK_VERSION=${_gtkver}" >> $GITHUB_ENV
-        echo "PATH=/usr/lib/ccache/bin/:$PATH" >> $GITHUB_ENV
+        echo "PATH=/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
+        echo "CCACHE_DIR=/home/runner/work/gtk3-classic-minimal-wayland/gtk3-classic-minimal-wayland/.ccache" >> $GITHUB_ENV
 
     - name: Cache Pacman Packages
       uses: actions/cache@v2
