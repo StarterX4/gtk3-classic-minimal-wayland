@@ -33,7 +33,7 @@ source=(
 	# Patch files.
 	series
 	csd__disabled-by-default.patch
-	file-chooser__places-sidebar.patch
+	#file-chooser__places-sidebar.patch #FAIL: file chooser windows are empty
 	other__remove_dead_keys_underline.patch
 
 	# Theme CSS stylesheet.
@@ -49,7 +49,7 @@ source=(
 )
 sha256sums=('7a60ebe4c6ef84f31334dff0a1bd48876d7dbd7d899a194436aef748e0cf5326'
             'caa4da5e786a38e788617d6c9a844dfc604038d2a5d57033273859cad46d14cd'
-            '5a422025358243567111806062b4be117706afe276e0c842bb238ae208a0d5d0'
+            #'5a422025358243567111806062b4be117706afe276e0c842bb238ae208a0d5d0'
             'b92a82568a0f5c1c897561efafb55deb2331450d53377ab230def71012d8ccfc'
             'ba93f62e249f2713dbfe6c82de1be4ac655264d6407ed3dc5e05323027520f31'
             'SKIP'
@@ -74,7 +74,7 @@ build()
 	CC="ccache gcc"
 	PATH="/usr/lib/ccache/bin/:$PATH"
 	alias cc="ccache gcc"
-	export CACHE_DIR="/home/runner/work/gtk3-classic-minimal-wayland/gtk3-classic-minimal-wayland/.ccache"
+	#export CACHE_DIR="/home/runner/work/gtk3-classic-minimal-wayland/gtk3-classic-minimal-wayland/.ccache"
 	# 64-bit
 	arch-meson --buildtype release --strip gtk-4.7.1 build \
 		-D broadway-backend=false \
