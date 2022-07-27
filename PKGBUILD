@@ -116,6 +116,7 @@ build()
 {
 	CFLAGS+=" -O3 -pipe -fno-plt -DG_DISABLE_CAST_CHECKS"
 	CXXFLAGS+=" -O3 -pipe -fno-plt"
+	CC="ccache gcc"
 
 	# Remove atk - patch (aka at-spi/atk-bridge removal patch)
 	# Installed atk package (libs) still required for build.
