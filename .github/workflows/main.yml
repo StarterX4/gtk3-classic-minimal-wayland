@@ -32,6 +32,10 @@ jobs:
           # If 'false', do not save the cache, only restore.
           #save: # optional, default is true
 
+    - name: CCache home dirs
+      run: |
+        mkdir -pv /home/builder/.cache/ccache/tmp
+
     - name: Get GTK Version
       run: |
         source PKGBUILD
