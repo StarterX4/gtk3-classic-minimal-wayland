@@ -36,6 +36,7 @@ install=gtk3.install
 source=(
 	# Patch files.
 	series
+	appearance__buttons-menus-icons.patch
 	appearance__disable-backdrop.patch
 	appearance__file-chooser.patch
 	appearance__fix_black_border.patch
@@ -72,6 +73,7 @@ source=(
 	"gtk-query-immodules-3.0.hook::https://raw.githubusercontent.com/archlinux/svntogit-packages/$__arch_pkg_commit/trunk/gtk-query-immodules-3.0.hook"
 )
 sha256sums=('8dc1a547b8c54cc70aed0d88a1a89c6cc5cc59bb2c755c7192bd9613a206d5b0'
+            '6de32e1bee6bf4307aaec072fc8431b044e73299720a490298b8c1b7c502e039'
             '9785368d56b851e52de00eec852fc56f636dbc66d53c74d9b102e7c060f69533'
             '760bd3d65b3c5c0be19311d3b9d2be1f33c3bec198bc470de5afe23f5d488b8f'
             '736821182ac014617006e9d00fafa807a19611f3a9032133dee91b4656b7980a'
