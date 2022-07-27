@@ -66,7 +66,7 @@ source=(
 	smaller-adwaita.css
 
 	# GTK source code.
-	"https://download.gnome.org/sources/gtk/${pkgver%.*}/gtk+-$_gtkver.tar.xz"
+	"https://download.gnome.org/sources/gtk/${pkgver%.*}/gtk-$_gtkver.tar.xz"
 
 	# Arch Linux package files.
 	settings.ini
