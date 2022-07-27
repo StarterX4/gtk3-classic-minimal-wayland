@@ -2,5 +2,5 @@ pkg
 src
 *.tar.xz
 *.tar.gz
-gtk-query-immodules-3.0.hook
+gtk-query-immodules-4.0.hook
 *._patch

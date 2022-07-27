@@ -47,7 +47,7 @@ source=(
 	"gtk-query-immodules-4.0.hook::https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/gtk4/trunk/gtk4-querymodules.hook"
 	gtk-update-icon-cache.{hook,script}
 )
-sha256sums=('8dc1a547b8c54cc70aed0d88a1a89c6cc5cc59bb2c755c7192bd9613a206d5b0'
+sha256sums=('7a60ebe4c6ef84f31334dff0a1bd48876d7dbd7d899a194436aef748e0cf5326'
             'caa4da5e786a38e788617d6c9a844dfc604038d2a5d57033273859cad46d14cd'
             '5ea3f1919d9fa602e9bf29a9e6123c9d9ac448c386f970574b8f3661699755df'
             'b92a82568a0f5c1c897561efafb55deb2331450d53377ab230def71012d8ccfc'
@@ -63,8 +63,8 @@ prepare()
 	cd gtk-$_gtkver
 	QUILT_PATCHES=.. quilt push -av
 
-	rm -f "$srcdir"/gtk-"$_gtkver"/gtk/theme/Adwaita/gtk-contained{,-dark}.css
-	cat "$srcdir/smaller-adwaita.css" | tee -a "$srcdir"/gtk-"$_gtkver"/gtk/theme/Adwaita/gtk-contained{,-dark}.css > /dev/null
+	rm -f "$srcdir"/gtk-"$_gtkver"/gtk/theme/Default/Default-{hc,hc-dark,dark,light}.css
+	cat "$srcdir/smaller-adwaita.css" | tee -a "$srcdir"/gtk-"$_gtkver"/gtk/theme/Default/Default-{hc,hc-dark,dark,light}.css > /dev/null
 }
 
 build()
@@ -75,38 +75,26 @@ build()
 	PATH="/usr/lib/ccache/bin/:$PATH"
 	alias cc="ccache gcc"
 
-	# Remove atk - patch (aka at-spi/atk-bridge removal patch)
-	# Installed atk package (libs) still required for build.
-        # Original NETBSD patch included but not used ( file: original.NETBSD.atk-bridge.patch )
-        # Here the same patch trough sed util:
-
-	sed -i 's/atk_bridge_adaptor_init.*$//g' "gtk-$_gtkver/gtk/a11y/gtkaccessibility.c"
-	sed -i 's/^#.*atk-bridge.h.$//g' "gtk-$_gtkver/gtk/a11y/gtkaccessibility.c"
-
 	# 64-bit
-	arch-meson --buildtype release --strip gtk build \
-		-D broadway_backend=false \
+	arch-meson --buildtype release --strip gtk-4.7.1 build \
+		-D broadway-backend=false \
         -D demos=false \
-        -D tests=false \
-        -D installed_tests=false \
-        -D print_backends=file \
-        -D win32_backend=false \
-        -D quartz_backend=false  \
-        -D colord=no \
-        -D cloudproviders=false \
+        -D build-tests=false \
+        -D build-examples=false \
+        -D win32-backend=false \
+        -D macos-backend=false  \
+        -D colord=disabled \
+        -D cloudproviders=disabled \
         -D gtk_doc=false \
-        -D examples=false \
-        -D x11_backend=false \
-        -D tracker=false \
+        -D f16c=disabled \
+        -D x11-backend=false \
+        -D tracker=disabled \
         -D man-pages=false \
-		-D xinerama=no \
-		-D profiler=false \
-		-D vulkan=true \
-		-D cups=false \
-		-D print=false \
-		-D ffmpeg=false \
-		-D media=false \
-		-D wayland_backend=true
+		-D vulkan=enabled \
+		-D print-cups=disabled \
+		-D media-ffmpeg=disabled \
+		-D media-gstreamer=disabled \
+		-D wayland-backend=true
 	ninja -C build
 }
 
