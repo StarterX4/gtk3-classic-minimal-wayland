@@ -37,7 +37,6 @@ jobs:
         source PKGBUILD
         echo "GTK_VERSION=${_gtkver}" >> $GITHUB_ENV
         echo "PATH=/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
-        echo "CCACHE_DIR=/home/runner/work/gtk3-classic-minimal-wayland/gtk3-classic-minimal-wayland/.ccache" >> $GITHUB_ENV
 
     - name: Cache Pacman Packages
       uses: actions/cache@v2
