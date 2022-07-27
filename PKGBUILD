@@ -17,7 +17,7 @@ url="https://github.com/StarterX4/gtk4-classic-minimal-wayland"
 conflicts=(gtk4)
 provides=(gtk4=$_gtkver
           libgtk-4.so)
-options=(ccache)
+options=(!ccache)
 arch=(x86_64)
 license=(LGPL)
 makedepends=(
