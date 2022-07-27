@@ -94,17 +94,11 @@ jobs:
         diff PKGBUILD.before PKGBUILD
         md5sum -c PKGBUILD.md5
 
-    - name: 'Upload Artifact: gtk3-classic'
+    - name: 'Upload Artifact: gtk4-minimal'
       uses: actions/upload-artifact@v2
       with:
-        name: gtk3-classic-run${{github.run_number}}-pkg
-        path: gtk3-classic-*.pkg*
-
-    - name: 'Upload Artifact: lib32-gtk3-classic'
-      uses: actions/upload-artifact@v2
-      with:
-        name: lib32-gtk3-classic-run${{github.run_number}}-pkg
-        path: lib32-gtk3-classic-*.pkg*
+        name: gtk4-minimal-run${{github.run_number}}-pkg
+        path: gtk4-minimal-*.pkg*
 
     - name: Create Draft Release
       id: create_release
@@ -112,7 +106,7 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          tag_name: gtk3-classic-run${{github.run_number}}
+          tag_name: gtk4-minimal-run${{github.run_number}}
           release_name: ${{ steps.create_tag.outputs.tag }}
           draft: true
           prerelease: false
@@ -123,18 +117,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
          upload_url: ${{ steps.create_release.outputs.upload_url }}
-         asset_path: gtk3-classic-3.24.34-100-x86_64.pkg.tar.zst
-         asset_name: gtk3-classic-3.24.34-100-run${{github.run_number}}.pkg.tar.zst
-         asset_content_type: application/zstd
-         
-    - name: Upload built pkg
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-         upload_url: ${{ steps.create_release.outputs.upload_url }}
-         asset_path: lib32-gtk3-classic-3.24.34-100-x86_64.pkg.tar.zst
-         asset_name: lib32-gtk3-classic-3.24.34-100-run${{github.run_number}}.pkg.tar.zst
+         asset_path: gtk4-minimal-4.7.1-100-x86_64.pkg.tar.zst
+         asset_name: gtk4-minimal-4.7.1-100-run${{github.run_number}}.pkg.tar.zst
          asset_content_type: application/zstd
          
     - name: Publish
