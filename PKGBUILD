@@ -98,6 +98,16 @@ build()
 	ninja -C build
 }
 
+_pick() {
+  local p="$1" f d; shift
+  for f; do
+    d="$srcdir/$p/${f#$pkgdir/}"
+    mkdir -p "$(dirname "$d")"
+    mv "$f" "$d"
+    rmdir -p --ignore-fail-on-non-empty "$(dirname "$f")"
+  done
+}
+
 package_gtk4-minimal()
 {
 	depends=(
@@ -119,8 +129,11 @@ package_gtk4-minimal()
 
 	install -Dt "$pkgdir/usr/share/gtk-4.0" -m644 settings.ini
 	install -Dt "$pkgdir/usr/share/libalpm/hooks" -m644 gtk-query-immodules-4.0.hook
+	
+	cd "$pkgdir"
+	_pick guic usr/bin/gtk4-update-icon-cache
+	_pick guic usr/share/man/man1/gtk4-update-icon-cache.1
 
-	rm "$pkgdir/usr/bin/gtk-update-icon-cache"
 }
 
 package_gtk-update-icon-cache() {
