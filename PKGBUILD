@@ -21,7 +21,7 @@ options=(!ccache)
 arch=(x86_64)
 license=(LGPL)
 makedepends=(
-	git gobject-introspection graphene sassc meson quilt
+	git gobject-introspection graphene sassc meson quilt vulkan-headers
 
 	atk cairo libxcursor libxinerama libxrandr libxi libepoxy gdk-pixbuf2 fribidi
 	libxcomposite libxdamage pango libcloudproviders shared-mime-info shaderc wayland libxkbcommon
